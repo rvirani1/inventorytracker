@@ -35,11 +35,12 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-
+  #Bullet configs
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
     Bullet.raise = true
-
   end
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
