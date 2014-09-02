@@ -16,7 +16,7 @@ gem 'newrelic_rpm'
 gem 'devise', '3.2.4'
 gem 'unicorn'
 gem 'simple_token_authentication'
-gem 'hydra_attribute' #, github: 'kostyantyn/hydra_attribute', branch: 'rails4'
+#gem 'hydra_attribute' #, github: 'kostyantyn/hydra_attribute', branch: 'rails4'
 
 
 group :development do
