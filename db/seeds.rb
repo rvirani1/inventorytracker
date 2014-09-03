@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+u = User.create! email: "user1@mailinator.com", password: "password", password_confirmation: "password"
+i = u.inventories.create! name: "Books"
+f = Field.create! name: "ISBN", structure: 'boolean', user_values: true
+f.fieldvalues.create value: "1234324234", inventory_id: i.id
+
+u.inventories.create! name: "Movies"

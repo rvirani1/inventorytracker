@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'static#index'
 
-  resources :inventories
+  resources :inventories, :except => [:new, :edit]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

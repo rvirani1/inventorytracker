@@ -1,17 +1,26 @@
 class InventoriesController < ApplicationController
   respond_to :json
-  before_action :token_reset
-
-
 
   def index
+    #todo how do I put this somewhere where it doesn't repeat
+    @inventories = current_user.inventories
+    binding.pry
     render 'index'
   end
 
-  private
+  def show
 
-  def token_reset
-    current_user.authentication_token = Devise.friendly_token
-    current_user.save!
+    render 'show'
+  end
+
+  def create
+    render 'show'
+  end
+
+  def update
+    render 'show'
+  end
+
+  def destroy
   end
 end
