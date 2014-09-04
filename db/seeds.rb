@@ -7,9 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-u = User.create! email: "user1@mailinator.com", password: "password", password_confirmation: "password"
-i = u.inventories.create! name: "Books"
-f = Field.create! name: "ISBN", structure: 'boolean', user_values: true
-f.fieldvalues.create value: "1234324234", inventory_id: i.id
+user = User.create! email: "user1@mailinator.com", password: "password", password_confirmation: "password"
+inventory = user.inventories.create! name: "Books"
+item = inventory.items.create!
 
-u.inventories.create! name: "Movies"
+field = Field.create! name: "ISBN", structure: 'boolean', user_values: true
+fieldvalue = field.fieldvalues.create value: "1234324234", item_id: item.id
+
+
+user.inventories.create! name: "Movies"

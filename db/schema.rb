@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902234531) do
+ActiveRecord::Schema.define(version: 20140903031443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140902234531) do
   end
 
   create_table "fieldvalues", force: true do |t|
-    t.integer  "inventory_id"
+    t.integer  "item_id"
     t.integer  "field_id"
     t.string   "value"
     t.datetime "created_at"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20140902234531) do
   end
 
   add_index "inventories", ["name"], name: "index_inventories_on_name", using: :btree
+
+  create_table "items", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "inventory_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

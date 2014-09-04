@@ -3,7 +3,7 @@ json.inventories @inventories do |inventory|
   json.name       inventory.name
   json.created_at inventory.created_at
   json.updated_at inventory.updated_at
-  json.items      inventory.fieldvalues.count
+  json.items      inventory.items.count
 end
 
 json.partial! 'shared/token'

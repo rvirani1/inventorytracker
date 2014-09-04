@@ -3,9 +3,7 @@ class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:show, :update, :destroy]
   before_action :check_authorization, only: [:show, :update, :destroy]
 
-
   def index
-    #todo how do I put this somewhere where it doesn't repeat
     @inventories = current_user.inventories
     render 'index'
   end
@@ -17,18 +15,27 @@ class InventoriesController < ApplicationController
   def create
     inventory = current_user.inventories.new name: params[:name]
     if inventory.save
-      render json: ["Success", inventory.id]
+      render 'show'
     else
       render json: "Failed"
     end
   end
 
   def update
-
+    @inventory.name = params[:name]
+    if @inventory.save
+      render 'show'
+    else
+      render json: "Failed"
+    end
   end
 
   def destroy
-
+    if Inventory.destroy(@inventory)
+      head :OK
+    else
+      render json: "Failed"
+    end
   end
 
   private

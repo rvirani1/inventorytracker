@@ -1,4 +1,4 @@
 class Inventory < ActiveRecord::Base
-  has_many :fieldvalues
+  has_many :items
   belongs_to :user
 end
