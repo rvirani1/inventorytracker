@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :inventories, :except => [:new, :edit]
 
+  resources :items, :except => [:new, :edit]
+
+  resources :fields, :except => [:new, :edit]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

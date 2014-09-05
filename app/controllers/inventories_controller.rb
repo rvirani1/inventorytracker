@@ -5,11 +5,9 @@ class InventoriesController < ApplicationController
 
   def index
     @inventories = current_user.inventories
-    render 'index'
   end
 
   def show
-    render 'show'
   end
 
   def create
@@ -17,16 +15,16 @@ class InventoriesController < ApplicationController
     if inventory.save
       render 'show'
     else
-      render json: "Failed"
+      head :bad_request
     end
   end
 
   def update
-    @inventory.name = params[:name]
+    @inventory.update params
     if @inventory.save
       render 'show'
     else
-      render json: "Failed"
+      head :bad_request
     end
   end
 
@@ -34,7 +32,7 @@ class InventoriesController < ApplicationController
     if Inventory.destroy(@inventory)
       head :OK
     else
-      render json: "Failed"
+      head :bad_request
     end
   end
 
@@ -45,6 +43,6 @@ class InventoriesController < ApplicationController
   end
 
   def check_authorization
-    @inventory.user == current_user
+    head :bad_request unless @inventory.user == current_user
   end
 end
