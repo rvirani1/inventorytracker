@@ -3,6 +3,11 @@ class Item < ActiveRecord::Base
   has_many :fieldvalues
   after_create :attach_fields
 
+  def setFieldValue params
+    fieldvalue = self.fieldvalues.find params[:fieldvalue_id]
+    fieldvalue.value = params[:value]
+    fieldvalue.save!
+  end
 
 
   def attach_fields

@@ -8,11 +8,19 @@
 
 
 user = User.create! email: "user1@mailinator.com", password: "password", password_confirmation: "password"
-inventory = user.inventories.create! name: "Books"
-item = inventory.items.create!
 
-field = Field.create! name: "ISBN", structure: 'boolean', user_values: true
-fieldvalue = field.fieldvalues.create value: "1234324234", item_id: item.id
+books = user.inventories.create! name: "Books"
+books.template_fields.create! name: "ISBN", structure: 'string', user_values: true
+books.template_fields.create! name: "Title", structure: 'string', user_values: true
+item = books.items.create!
+item.setFieldValue fieldvalue_id: 1, value: "123q4234234"
+item.setFieldValue fieldvalue_id: 2, value: "Harry Potter"
+item.save!
 
-
-user.inventories.create! name: "Movies"
+movies = user.inventories.create! name: "Movies"
+movies.template_fields.create! name: "Title", structure: 'string', user_values: true
+movies.template_fields.create! name: "Release Year", structure: 'number', user_values: true
+movie = movies.items.create!
+movie.setFieldValue fieldvalue_id: 3, value: "Snakes on a Plan"
+movie.setFieldValue fieldvalue_id: 4, value: "2006"
+movie.save!
