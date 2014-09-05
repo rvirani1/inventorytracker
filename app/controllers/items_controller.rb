@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new check_params
+    @item = @inventory.items.new check_params
     if @item.save
       render 'show'
     else
@@ -45,7 +45,8 @@ class ItemsController < ApplicationController
   end
 
   def check_matching_inventory
-    head :bad_request unless Inventory.find(params[:inventory_id]).user == current_user
+    @inventory = Inventory.find(params[:inventory_id])
+    head :bad_request unless @inventory.user == current_user
   end
 
   def check_params
